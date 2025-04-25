@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Chio ✨</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background: url('fondo.jpg') no-repeat center fixed;
+            background-size: cover;
+            color: #5c2d0e;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 253, 245, 0.85);
+            border: 15px solid #d4af37;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        h1 {
+            font-family: 'Harry Potter', cursive;
+            color: #8b4513;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        #btnYes {
+            background: #4CAF50;
+            color: white;
+        }
+        #btnNo {
+            background: #f44336;
+            color: white;
+        }
+        #btnNo:hover {
+            transform: translateX(100px) rotate(10deg);
+        }
+        .hidden {
+            display: none;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 1.5em;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s linear;
+        }
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        @import url('https://fonts.cdnfonts.com/css/harry-potter');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Chio, ¿aceptas una propuesta indecorosa? ✨</h1>
+        <p>Sé que dirás que no... pero dudo que puedas 🤔</p>
+        
+        <div class="buttons">
+            <button id="btnYes">¡Sí! ⚡</button>
+            <button id="btnNo">No... 🎩</button>
+        </div>
+        
+        <div id="responseYes" class="hidden response">
+            <p>¡Abracadabra! 💫<br> Una tarde juntos, tú y yo.</p>
+        </div>
+        
+        <div id="responseNo" class="hidden response">
+            <p>¿Segura que no? 🧙‍♂️<br> *Obliviate* a esa respuesta... ¡prueba otra vez! 😏</p>
+        </div>
+    </div>
+
+    <script>
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const responseYes = document.getElementById('responseYes');
+        const responseNo = document.getElementById('responseNo');
+
+        btnYes.addEventListener('click', () => {
+            responseYes.classList.remove('hidden');
+            responseNo.classList.add('hidden');
+            createSparkles(50);
+        });
+
+        btnNo.addEventListener('click', () => {
+            responseNo.classList.remove('hidden');
+            responseYes.classList.add('hidden');
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = Math.random() * 300 + 'px';
+            btnNo.style.top = Math.random() * 200 + 'px';
+        });
+
+        function createSparkles(count) {
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                document.body.appendChild(sparkle);
+                setTimeout(() => { sparkle.remove(); }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
